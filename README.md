@@ -5,16 +5,18 @@ scripts section in package.json to start 'Live Server'.
 
 ## Typescript compilation
 
+## Typescript Compiler (tsc) and its various options
+
 Typescript, a superset of Javascript, transpiles
 typescript(.ts) => javascript(.js). The typescript
 compiler is referenced as 'tsc' on the command line.
-A typescript project typically uses tsconfig.json to
+A typescript project ALWAYS relies on a  tsconfig.json to
 configure its environment variables that includes
 compiler options, the locations of the tsconfig.json
 source files and the final output directory for the build.
 Use tsc --project 'path to tsconfig.json' on command line.
 Where the real path MUST be used. The path may be '.' to
-signify that the current directory is to be used. When
+signify that the current directory is to be used. Whenever
 the project option (tsc --project) is specified, only
 the path to the tsconfig.json file is allowed. All
 configuration values just mentioned will manage compilation
@@ -24,8 +26,8 @@ file that it finds.
 
 ## tsconfig.json
 
-This file contain all of the environmental variable
-parameters and seting used to configure/control the
+This file contain all of the environmental variables,
+parameters and setings used to configure/control the
 project envirnoment. In particular the locations of
 the project root directory, base url used for relative
 addressing,  the source files and the output destination
@@ -41,6 +43,16 @@ having to see platform options individually.
 As opposed to setting the 'lib', will require each
 choice of options to be named + set individually.
 
+## tsconfig.app.json
+
+A tsconfig.app.json often supplements the main 'tsconfig.json'.
+When used,  it can be included within 'tsconfig.json'.
+
+## tsconfig.xxx.json
+
+Other file(s) that supplements the main compiler file (tsconfig.json)
+will be named so that 'xxx' is replaced as to serve as part of the name
+
 ## Packaged Libraries
 
 The package.json has all of the library modules that are
@@ -55,5 +67,8 @@ has been installed via npm install lite-server.
     }
     These scripts are executed using 'npm run' followed by "script name".
     Do not include any  quotes. For an example:
-    'npm run build' will compile source file and place
-    the output build in designated directory location;  
+    'npm run build', 1st locates the 'tsconfig.json' file
+    within the current directory (because of the --project flag),
+    then compiles all source files (.tsc files) and send all output
+    to the  directory location shown as the 'dist' compiler key option.
+    All compiler options are available with the main tsconfig.json.  
